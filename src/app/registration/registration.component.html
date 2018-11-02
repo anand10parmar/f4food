@@ -1,0 +1,159 @@
+
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h1>Create an account</h1>
+      <hr>
+
+      <form [formGroup]="regestrationForm" (ngSubmit)="submitRegistration()">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username</label>
+          <input type="text"
+                 name="username"
+                 class="form-control"
+                 placeholder="Enter username"
+                 formControlName="username">
+          <div class="progress" *ngIf="isUsernameValidationPending">
+            <div class="progress-bar progress-bar-striped bg-sucess"
+            role="progressbar" style="width: 25%">Validating...</div>
+          </div>
+
+          <br>
+          <div *ngIf="username.touched && username.invalid">
+            <div *ngIf="username.errors.required" class="alert alert-danger" role="alert">
+              Username is required
+            </div>
+            <div *ngIf="username.errors.invalidUsernameSize"  class="alert alert-danger"  role="alert">
+              Username should be gerater that 5 character
+            </div>
+
+            <div *ngIf="username.errors.usernameNotAvailable"  class="alert alert-danger"  role="alert">
+              Username not available.
+            </div>
+
+          </div>
+
+          <small id="" class="form-text text-muted">We'll never share your username with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+
+
+
+
+      <!--<form (ngSubmit) = "onSubmit()" #f="ngForm">-->
+        <!--<div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">-->
+          <!--<div class="form-group has-feedback">-->
+
+            <!--<label for="name">Username</label>-->
+
+
+            <!--<input type="text"-->
+                   <!--id="name"-->
+                   <!--ngModel-->
+                   <!--#name = "ngModel"-->
+                   <!--required-->
+                   <!--name="name"-->
+                   <!--class="form-control">-->
+            <!--<i *ngIf="name.valid" class="glyphicon glyphicon-ok form-control-feedback"></i>-->
+            <!--<i *ngIf="name.invalid && name.dirty" class="glyphicon glyphicon-remove form-control-feedback"></i>-->
+            <!--<span class="help-block alert alert-danger" *ngIf="name.invalid && name.dirty"> Please enter valid name!</span>-->
+          <!--</div>-->
+
+          <!--<div class="form-group has-feedback">-->
+            <!--<label for="email">Mail</label>-->
+
+
+            <!--<input type="email"-->
+                   <!--id="email"-->
+                   <!--ngModel-->
+                   <!--name="email"-->
+                   <!--email-->
+                   <!--required-->
+                   <!--#email="ngModel"-->
+                   <!--class="form-control"-->
+            <!--&gt;-->
+            <!--<i *ngIf="email.valid" class="glyphicon glyphicon-ok form-control-feedback"></i>-->
+            <!--<i *ngIf="email.invalid && email.dirty" class="glyphicon glyphicon-remove form-control-feedback"></i>-->
+            <!--<span class="help-block alert alert-danger" *ngIf="email.invalid && email.dirty"> Please valid email address!</span>-->
+          <!--</div>-->
+
+
+          <!--<div class="form-group has-feedback">-->
+            <!--<label for="email">Password</label>-->
+
+
+            <!--<input type="password"-->
+                   <!--id="password"-->
+                   <!--ngModel-->
+                   <!--name="password"-->
+                   <!--pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,16}$"-->
+                   <!--required-->
+                   <!--#password="ngModel"-->
+                   <!--class="form-control"-->
+            <!--&gt;-->
+            <!--<i *ngIf="password.valid" class="glyphicon glyphicon-ok form-control-feedback"></i>-->
+            <!--<i *ngIf="password.invalid && password.dirty" class="glyphicon glyphicon-remove form-control-feedback"></i>-->
+            <!--<span class="help-block alert alert-danger" *ngIf="password.invalid && password.dirty">Please enter at least one uppercase, lowercase and number</span>-->
+          <!--</div>-->
+
+
+
+
+
+
+        <!--</div>-->
+
+        <!--&lt;!&ndash;formModel test&ndash;&gt;-->
+        <!--&lt;!&ndash;<p *ngIf="!userData.valid && userData.touched">&ndash;&gt;-->
+        <!--&lt;!&ndash;Entered value is invalid&ndash;&gt;-->
+        <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+
+        <!--<div class="form-group">-->
+          <!--<label for="secret">Secret Questions</label>-->
+          <!--<select id="secret"-->
+                  <!--class="form-control"-->
+                  <!--name="secret"-->
+                  <!--[ngModel]="defaultQuestion">-->
+            <!--<option value="pet">Your first Pet?</option>-->
+            <!--<option value="teacher">Your first teacher?</option>-->
+          <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<textarea name="questionAnswer"-->
+                    <!--cols="80"-->
+                    <!--rows="3"-->
+                    <!--[(ngModel)]="answer"-->
+                    <!--required></textarea>-->
+        <!--</div>-->
+
+        <!--<div class="radio" *ngFor="let gender of genders">-->
+          <!--<label>-->
+            <!--<input type="radio"-->
+                   <!--required-->
+                   <!--name="gender"-->
+                   <!--ngModel-->
+                   <!--[value]="gender">-->
+            <!--{{gender}}-->
+          <!--</label>-->
+        <!--</div>-->
+        <!--<button class="btn btn-primary col-md-12" type="submit" [disabled]="!f.valid" >Submit</button>-->
+      <!--</form>-->
+      <h3 class="alert alert-success" *ngIf = "submitStatus"> Thank you for joining us!!</h3>
+    </div>
+  </div>
