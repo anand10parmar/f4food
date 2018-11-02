@@ -3,6 +3,7 @@ import {ViewChild} from '@angular/core';
 import {FormControl, FormGroup, NgForm, ValidatorFn, Validators} from '@angular/forms';
 import {AppService} from '../app.service';
 import {RegistrationAsyncValidator} from './validator/registration.async.validator';
+import {User} from '../model/app.user.model';
 
 @Component({
   selector: 'app-registration',
@@ -25,7 +26,7 @@ export class RegistrationComponent implements OnInit {
       [Validators.required, Validators.minLength(5)],
       [RegistrationAsyncValidator.isUsernameAvailable(this.appService)]),
     password: new FormControl(null),
-    emailID: new FormControl(null)
+    email: new FormControl(null)
     // add otherFields too
   })
 
@@ -43,6 +44,9 @@ export class RegistrationComponent implements OnInit {
 
   submitRegistration() {
     console.log(this.regestrationForm.value);
+
+    this.appService.addNewUser(this.regestrationForm.value).subscribe((user: User) => {
+    });
   }
 
   addFormControl() {

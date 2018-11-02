@@ -25,33 +25,33 @@ export class AppService {
     return this.http.get<User[]>(USER_SERVICE + 'user', httpOptions);
   }
 
-  getAllUserById(userId: number): Observable<User> {
-    return this.http.get<User>(USER_SERVICE + 'user/' + userId, httpOptions);
-  }
+  // getAllUserById(userId: number): Observable<User> {
+  //   return this.http.get<User>(USER_SERVICE + 'user/' + userId, httpOptions);
+  // }
+  //
+  // getUserByFname(fnameSearchText): Observable<User[]> {
+  //   return this.http.get<User[]>(USER_SERVICE + 'user?fristName=' + fnameSearchText, httpOptions);
+  // }
 
-  getUserByFname(fnameSearchText): Observable<User[]> {
-    return this.http.get<User[]>(USER_SERVICE + 'user?fristName=' + fnameSearchText, httpOptions);
-  }
+  //
+  // deleteUser(userId: number): Observable<User> {
+  //   return this.http.delete<User>(USER_SERVICE + 'user/' + userId, httpOptions);
+  // }
 
-
-  deleteUser(userId: number): Observable<User> {
-    return this.http.delete<User>(USER_SERVICE + 'user/' + userId, httpOptions);
-  }
-
-  onAddService(user: User): Observable<User> {
-    return this.http.put<User>(USER_SERVICE + 'user', user, httpOptions);
-  }
+  // onAddService(user: User): Observable<User> {
+  //   return this.http.put<User>(USER_SERVICE + 'user', user, httpOptions);
+  // }
 
   addNewUser(user: User): Observable<User> {
-    return this.http.post<User>(USER_SERVICE + 'user', user, httpOptions);
+    return this.http.post<User>(USER_SERVICE + 'register', user , httpOptions);
   }
 
   isUserAvailable(username: string): Observable<User | null> {
-    return this.http.get<User>(USER_SERVICE + '/user/' + username + '/username');
+    return this.http.get<User>(USER_SERVICE + 'user/' + username + '/username');
   }
 
   isUserEmailAvailable(email: string): Observable<User | null> {
-    return this.http.get<User>(USER_SERVICE + '/user/' + email + 'email');
+    return this.http.get<User>(USER_SERVICE + 'user/' + email + 'email');
   }
 
 }
