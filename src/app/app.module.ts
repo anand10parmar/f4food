@@ -8,12 +8,14 @@ import {AppOrderService} from './order/app.order.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
-import {AppService} from './app.service';
+import {AppService} from './services/app.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppPageNotFoundComponent} from './app.page.not.found.component';
 import {RoutingModule} from './routing/routing.module';
 import {RouterModule} from '@angular/router';
+import {AuthenticationService} from './services/authentication.service';
+import {AlertService} from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import {RouterModule} from '@angular/router';
     RoutingModule,
     RouterModule,
   ],
-  providers: [AppService],
+  providers: [AppService, AuthenticationService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

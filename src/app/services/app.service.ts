@@ -2,7 +2,8 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {User} from './model/app.user.model';
+import {User} from '../model/app.user.model';
+import {map} from 'rxjs/operators';
 
 
 const USER_SERVICE = 'https://webdev-mintex.herokuapp.com/api/';
@@ -46,12 +47,21 @@ export class AppService {
     return this.http.post<User>(USER_SERVICE + 'register', user , httpOptions);
   }
 
+  // addNewUser(user: User): Observable<User> {
+  //   return this.http.post<User>(USER_SERVICE + 'user/', user, httpOptions);
+  // }
   isUserAvailable(username: string): Observable<User | null> {
     return this.http.get<User>(USER_SERVICE + 'user/' + username + '/username');
   }
 
-  isUserEmailAvailable(email: string): Observable<User | null> {
-    return this.http.get<User>(USER_SERVICE + 'user/' + email + 'email');
+  logInUser(username: string, password: string): Observable<User | null> {
+    return this.http.post<User>(USER_SERVICE + 'login', { username, password}, httpOptions)
+  .pipe(map(user => {
+      if (user != null) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+      return user;
+    }));
   }
 
 }

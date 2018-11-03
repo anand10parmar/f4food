@@ -1,53 +1,77 @@
-<div class="container">
+<!--<div class="container">-->
 
-  <div class="row">
+<!--<div class="row">-->
 
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <h1>Login</h1>
-      <hr>
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<h1>Login</h1>-->
+<!--<hr>-->
 
-      <form>
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text"
-                 name="username"
-                 class="form-control"
-                 placeholder="Enter username">
-          <br>
-          <!--<div class="progress">-->
+<!--<div [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
+<!--<div class="form-group">-->
+<!--<label>Username</label>-->
+<!--<input type="text"-->
+<!--formControlName="username"-->
+<!--name="username"-->
+<!--[ngClass]="{ 'is-invalid': submitted && f.username.errors }"-->
+<!--class="form-control"-->
+<!--placeholder="Enter username">-->
+<!--div *ngIf="submitted && f.username.errors" class="invalid-feedback">-->
+<!--<div *ngIf="f.username.errors.required">Username is required</div>-->
+<!--</div>-->
 
-            <!--<div class="progress-bar progress-bar-striped bg-sucess"-->
-                 <!--role="progressbar" style="width: 25%">Validating...</div>-->
-          <!--</div>-->
-          <br>
-          <!--<div>-->
-            <!--<div class="alert alert-danger">-->
-              <!--Username is required-->
-            <!--</div>-->
-            <!--<div class="alert alert-danger">-->
-              <!--Username should be gerater that 5 character-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<small id="" class="form-text text-muted">We'll never share your username with anyone else.</small>-->
-        </div>
+<!--</div>-->
+<!--</div>-->
 
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-group">
-        <button type="submit" class="btn btn-success col-md-4 align-left">Login</button>
-          <span class="col-md-4"> </span>
-          <button type="submit"
-                  class="btn btn-primary col-md-4 align-left"
-                  routerLink="/register"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{exact:true}"
-          >Register</button>
+<!--<div class="form-group">-->
+<!--<label for="exampleInputPassword1">Password</label>-->
+<!--<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<button type="submit" class="btn btn-success col-md-4 align-left">Login</button>-->
+<!--<span class="col-md-4"> </span>-->
+<!--<button type="submit"-->
+<!--class="btn btn-primary col-md-4 align-left"-->
+<!--routerLink="/register"-->
+<!--routerLinkActive="active"-->
+<!--[routerLinkActiveOptions]="{exact:true}"-->
+<!--&gt;Register</button>-->
 
-        </div>
-      </form>
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
 
+
+<div class="container row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text"
+             formControlName="username"
+             class="form-control"
+             [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">Username is required</div>
       </div>
-  </div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">Login</button>
+
+      <a
+         class="btn btn-link"
+         routerLinkActive="active"
+         routerLink="/register"
+         [routerLinkActiveOptions]="{exact:true}">Register</a>
+    </div>
+  </form>
+</div>
 </div>

@@ -1,4 +1,4 @@
-import {AppService} from '../../app.service';
+import {AppService} from '../../services/app.service';
 import {FormControl, ValidationErrors} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {User} from '../../model/app.user.model';
@@ -17,15 +17,6 @@ export class RegistrationAsyncValidator {
     };
   }
 
-  // static isEmailAvailable(userService: AppService) {
-  //   return (control: FormControl): Observable<ValidationErrors> | null | Promise<ValidationErrors | null> => {
-  //     return userService.isUserEmailAvailable(control.value).pipe(
-  //       map((user: User) =>
-  //         user != null ? {'usernameNotAvailable': true} : null),
-  //       catchError((error) => error)
-  //     );
-  //   };
-  // }
 
 
 

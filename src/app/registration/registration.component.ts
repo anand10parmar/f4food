@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ViewChild} from '@angular/core';
 import {FormControl, FormGroup, NgForm, ValidatorFn, Validators} from '@angular/forms';
-import {AppService} from '../app.service';
+import {AppService} from '../services/app.service';
 import {RegistrationAsyncValidator} from './validator/registration.async.validator';
 import {User} from '../model/app.user.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +18,8 @@ export class RegistrationComponent implements OnInit {
   submitStatus: Boolean = false;
 
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService,
+              private router: Router) { }
   isUsernameValidationPending: Boolean = false;
 
   regestrationForm = new FormGroup({
@@ -46,6 +48,7 @@ export class RegistrationComponent implements OnInit {
     console.log(this.regestrationForm.value);
 
     this.appService.addNewUser(this.regestrationForm.value).subscribe((user: User) => {
+      this.router.navigate(['/Login']);
     });
   }
 
